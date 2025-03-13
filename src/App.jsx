@@ -2,7 +2,7 @@
 import React from 'react';
 // import du composant header dans la l'app.jsx qui est le point de départ de l'app
 import Header from './Header';
-
+import NavBar from './NavBar';
 function App() {
 
   return (
@@ -12,6 +12,7 @@ function App() {
     <div className='w-full h-full absolute bg-orange-50'>
     {/* import du composant header */}
       <Header/>
+      <NavBar/>
     </div>
     </>
   )
