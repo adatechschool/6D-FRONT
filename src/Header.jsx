@@ -9,7 +9,7 @@ function Header () {
     return (
         <>
         <header className="flex justify-between item-center text-emerald-700 py-6 px-2 md:px-32 bg-orange-50 drop-shadow-md">
-            <button className='hover:scale-90 transition-all'>
+            <button className='hover:scale-90 transition-all cursor-grab'>
                     <img src={logo} alt="logo" className="w-15" />
             </button>
             <p className='font-primary font-bold text-2xl ml-4'>Ancien meuble pour<br/>une nouvelle vie</p>
@@ -19,15 +19,15 @@ function Header () {
                 className='py-2 pl-10 rounded-xl border-2 border-green-emerald-700 focus:bg-teal-50 focus:outline-teal-50'/>
             </div>
             <div className="flex item-center justify-center gap-6">
-                <button className='hover:scale-90 transition-all text-black'>
+                <button className='hover:scale-90 transition-all cursor-grab text-black'>
                     <img src={user} alt="user" className="w-10" />
                     <p className='text-sm flex'>Connexion</p>
                 </button>
-                <button className='hover:scale-90 transition-all text-black'>
+                <button className='hover:scale-90 transition-all cursor-grab text-black'>
                     <img src={basket} alt="panier" className="w-10" />
                     <p className='text-sm'>Panier(0)</p>
                 </button>
-                <button className='hover:scale-90 transition-all text-black'>
+                <button className='hover:scale-90 transition-all cursor-grab text-black'>
                     <img src={like} alt="favoris" className="w-10" />
                     <p className='text-sm'>Favoris(0)</p>
                 </button>
