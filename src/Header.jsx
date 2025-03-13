@@ -3,6 +3,7 @@ import user from './assets/user_456283.svg';
 import basket from './assets/shopping-basket_1002795.svg';
 import like from './assets/like_2794617.svg';
 import './App.css';
+import NavBar from './NavBar';
 
 function Header () {
     return (
@@ -31,6 +32,9 @@ function Header () {
                     <p className='text-sm'>Favoris(0)</p>
                 </button>
             </div>
+            <br />
+            
+
         </header>
         </>
     )
