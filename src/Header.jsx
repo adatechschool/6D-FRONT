@@ -8,9 +8,9 @@ function Header () {
     return (
         <>
         <header className="flex justify-between item-center text-emerald-700 py-6 px-2 md:px-32 bg-orange-50 drop-shadow-md">
-            <a href="#">
-                <img src={logo} alt="logo" className='w-15 hover:scale-90 transition-all'/>
-            </a>
+            <button className='hover:scale-90 transition-all'>
+                    <img src={logo} alt="logo" className="w-15" />
+            </button>
             <p className='font-primary font-bold text-2xl ml-4'>Ancien meuble pour<br/>une nouvelle vie</p>
             <div className='relative hidden md:flex item-center justify-center gap-3'>
                 <i className='bx bx-search absolute left-3 bottom-4 text-2xl text-gray-500'></i>
