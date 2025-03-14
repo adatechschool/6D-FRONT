@@ -1,13 +1,14 @@
 import like from './assets/like_2794617.svg';
 import fauteuil from './assets/fauteuil.webp';
+import { Link } from 'react-router-dom';
 
-function MainHomePage(){
+function HomePageCard(){
 
     return (
         <>
-        <main>
-            <div className='grid grid-cols-5 grid-rows-2 gap-4 px-4 py-4'>
-                <article className='bg-white w-70 h-92 rounded-2xl text-emerald-700 font-primary shadow-md'>
+            <div className='grid grid-cols-4 grid-rows-2 gap-4 px-4 py-4'>
+                {/* balise link poutr spéficier la partie qui est un lien et renvoie vers une autre page */}
+                <Link to="/details" className='bg-white w-70 h-92 rounded-2xl text-emerald-700 font-primary shadow-md'>
                     <img src={fauteuil} alt="fauteuil" className="w-full rounded-t-2xl" />
                     <div className='p-5'>
                         <div className='flex justify-between items-center mb-4'>
@@ -27,10 +28,10 @@ function MainHomePage(){
                             </button>
                         </div>
                     </div>
-                </article>
+                </Link>
             </div>
-        </main>
+
         </>
     )
 }
-export default MainHomePage
+export default HomePageCard
