@@ -4,19 +4,18 @@ import React from 'react';
 import Header from './Header';
 import NavBar from './NavBar';
 import MainHomePage from './MainHomePage';
+
+
 function App() {
 
   return (
-    // <> div root, syntaxe jsx de react
-    <>
-    {/* div principal de l'appli */}
     <div className='w-full h-full absolute bg-orange-50'>
-    {/* import du composant header */}
+
+    {/*import du composant header */}
       <Header/>
       <NavBar/>
       <MainHomePage/>
     </div>
-    </>
   )
 }
 export default App
