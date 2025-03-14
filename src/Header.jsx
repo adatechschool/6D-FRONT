@@ -20,9 +20,9 @@ function Header({ setSearchResults }) {
     return (
         <header className="flex flex-col items-center text-emerald-700 py-6 px-2 md:px-32 bg-orange-50 drop-shadow-md">
             <div className="flex justify-between items-center w-full">
-                <button className='hover:scale-90 transition-all cursor-grab'>
+            <a href="/" className='hover:scale-90 transition-all cursor-grab'>
                     <img src={logo} alt="logo" className="w-15" />
-                </button>
+                </a>
                 <p className='font-primary font-bold text-2xl ml-4'>Ancien meuble pour<br/>une nouvelle vie</p>
                 <div className='relative hidden md:flex items-center justify-center gap-3'>
                     <i className='bx bx-search absolute left-3 bottom-4 text-2xl text-gray-500'></i>
