@@ -66,3 +66,131 @@ Currently, two official plugins are available:
 ###### Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+
+##### Étapes pour lier votre Backend Symfony à votre Frontend React
+1. Configurer une API RESTful avec Symfony
+Créer des Contrôleurs :
+
+Créez des contrôleurs dans Symfony pour gérer les requêtes HTTP (GET, POST, PUT, DELETE) pour vos entités (par exemple, les annonces).
+Routes :
+
+Définissez des routes dans Symfony pour chaque action que vous souhaitez exposer (par exemple, /api/annonces pour récupérer les annonces).
+Serialisation :
+
+Utilisez des bibliothèques comme JMS Serializer ou le composant Serializer de Symfony pour convertir vos objets PHP en JSON.
+CORS :
+
+Configurez les en-têtes CORS pour permettre à votre application React de faire des requêtes à votre API Symfony.
+2. Configurer le Frontend React pour consommer l'API
+Requêtes HTTP :
+
+Utilisez des bibliothèques comme Axios ou l'API Fetch native pour faire des requêtes HTTP à votre API Symfony depuis votre application React.
+Gestion de l'État :
+
+Utilisez des hooks comme useState et useEffect pour gérer les données récupérées de l'API et mettre à jour l'interface utilisateur.
+Exemple de Code
+Backend Symfony
+Contrôleur pour gérer les annonces :
+
+Copier
+// src/Controller/AnnonceController.php
+
+namespace App\Controller;
+
+use App\Entity\Annonce;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class AnnonceController extends AbstractController
+{
+    /**
+     * @Route("/api/annonces", name="annonces_index", methods={"GET"})
+     */
+    public function index(SerializerInterface $serializer): JsonResponse
+    {
+        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findAll();
+        $jsonContent = $serializer->serialize($annonces, 'json');
+
+        return new JsonResponse($jsonContent, 200, [], true);
+    }
+
+    // Ajoutez d'autres méthodes pour POST, PUT, DELETE si nécessaire
+}
+Configurer CORS :
+
+Installez le bundle CORS si ce n'est pas déjà fait :
+
+Copier
+composer require nelmio/cors-bundle
+Configurez-le dans config/packages/nelmio_cors.yaml :
+
+Copier
+nelmio_cors:
+    defaults:
+        origin_regex: true
+        allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        allow_headers: ['Content-Type', 'Authorization']
+        expose_headers: ['Link']
+        max_age: 3600
+    paths:
+        '^/api/':
+            origin_regex: true
+            allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+            allow_headers: ['Content-Type', 'Authorization']
+            expose_headers: ['Link']
+            max_age: 3600
+Frontend React
+Utiliser Axios pour faire des requêtes à l'API :
+
+Installez Axios si ce n'est pas déjà fait :
+
+Copier
+npm install axios
+Exemple d'utilisation dans un composant React :
+
+Copier
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+function HomePageCard() {
+    const [searchResults, setSearchResults] = useState([]);
+
+    useEffect(() => {
+        // Remplacez par l'URL de votre API Symfony
+        axios.get('http://localhost:8000/api/annonces')
+            .then(response => {
+                setSearchResults(response.data);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des annonces :', error);
+            });
+    }, []);
+
+    return (
+        <main>
+            <div className='grid grid-cols-5 grid-rows-2 gap-4 px-4 py-4'>
+                {searchResults.map((annonce, index) => (
+                    <Annonce key={index} annonce={annonce} />
+                ))}
+            </div>
+        </main>
+    );
+}
+
+export default HomePageCard;
+Explications :
+Backend Symfony :
+
+Le contrôleur gère les requêtes pour récupérer les annonces et les renvoie au format JSON.
+CORS est configuré pour permettre les requêtes depuis votre application React.
+Frontend React :
+
+Utilise Axios pour faire des requêtes à l'API Symfony et met à jour l'état avec les données récupérées.
+Les données sont ensuite affichées dans le composant HomePageCard.
