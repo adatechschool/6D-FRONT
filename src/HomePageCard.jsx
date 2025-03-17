@@ -15,7 +15,7 @@ function Annonce({ annonce }) {
     const truncatedTitle = truncateText(annonce.nom_de_l_annonce, 18);
 
     return (
-        <div className='grid grid-cols-4 grid-rows-2 gap-4 px-4 py-4'>
+        <div className='grid grid-cols-4 grid-rows-1 gap-4 px-4 py-4'>
             <Link to="/details" className='bg-white w-70 h-92 rounded-2xl text-emerald-700 font-primary shadow-md'>
                 <img src={fauteuil} alt="fauteuil" className="w-full rounded-t-2xl" />
                 <div className='p-5'>

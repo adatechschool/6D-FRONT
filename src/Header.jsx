@@ -17,6 +17,36 @@ function Header({ setSearchResults }) {
         setSearchResults(filteredResults);
     };
 
+    // Fonction pour filtrer par catégorie
+    const filterByCategory = (category) => {
+        let filteredResults;
+        
+        if (category === 'all') {
+            // Afficher tous les meubles
+            filteredResults = tableauObjets;
+        } else if (category === 'new') {
+            // Filtrer les nouveautés (les 3 derniers)
+            filteredResults = [...tableauObjets].slice(-3);
+        } else if (category === 'table') {
+            // Filtrer par la catégorie Table
+            filteredResults = tableauObjets.filter(item =>
+                item.type_de_meuble && item.type_de_meuble.toLowerCase().includes('table')
+            );
+        } else if (category === 'chaise') {
+            // Filtrer les chaises
+            filteredResults = tableauObjets.filter(item =>
+                item.type_de_meuble && item.type_de_meuble.toLowerCase().includes('chaise')
+            );
+        } else if (category === 'canape') {
+            // Filtrer les canapés
+            filteredResults = tableauObjets.filter(item =>
+                item.type_de_meuble && item.type_de_meuble.toLowerCase().includes('canapé')
+            );
+        }
+        
+        setSearchResults(filteredResults);
+    };
+
     return (
         <header className="flex flex-col items-center text-emerald-700 py-6 px-2 md:px-32 bg-orange-50 drop-shadow-md">
             <div className="flex justify-between items-center w-full">
@@ -54,10 +84,10 @@ function Header({ setSearchResults }) {
             {/* Inclure la NavBar ici avec le style approprié */}
             <nav className="mt-4 w-full bg-emerald-700 text-orange-50">
                 <ul className="flex justify-center space-x-4 py-2">
-                    <li><a href="#" className="hover:text-emerald-300">Tous les meubles</a></li>
-                    <li><a href="#" className="hover:text-emerald-300">Nouveautés</a></li>
-                    <li><a href="#" className="hover:text-emerald-300">Tables</a></li>
-                    <li><a href="#" className="hover:text-emerald-300">Chaises</a></li>
+                    <li><a href="#" onClick={(e) => { e.preventDefault(); filterByCategory('all'); }} className="hover:text-emerald-300">Tous les meubles</a></li>
+                    <li><a href="#" onClick={(e) => { e.preventDefault(); filterByCategory('new'); }}className="hover:text-emerald-300">Nouveautés</a></li>
+                    <li><a href="#" onClick={(e) => { e.preventDefault(); filterByCategory('table'); }} className="hover:text-emerald-300">Tables</a></li>
+                    <li><a href="#" onClick={(e) => { e.preventDefault(); filterByCategory('chaise'); }} className="hover:text-emerald-300">Chaises</a></li>
                 </ul>
             </nav>
         </header>
