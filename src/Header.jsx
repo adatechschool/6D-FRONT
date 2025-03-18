@@ -12,7 +12,7 @@ function Header({ setSearchResults }) {
     const handleSearch = (event) => {
         event.preventDefault();
         const filteredResults = tableauObjets.filter(item =>
-            item.nom_de_l_annonce.toLowerCase().includes(query.toLowerCase())
+            item.name.toLowerCase().includes(query.toLowerCase())
         );
         setSearchResults(filteredResults);
     };
@@ -30,17 +30,17 @@ function Header({ setSearchResults }) {
         } else if (category === 'table') {
             // Filtrer par la catégorie Table
             filteredResults = tableauObjets.filter(item =>
-                item.type_de_meuble && item.type_de_meuble.toLowerCase().includes('table')
+                item.type && item.type.toLowerCase().includes('table')
             );
         } else if (category === 'chaise') {
             // Filtrer les chaises
             filteredResults = tableauObjets.filter(item =>
-                item.type_de_meuble && item.type_de_meuble.toLowerCase().includes('chaise')
+                item.type && item.type.toLowerCase().includes('chaise')
             );
         } else if (category === 'canape') {
             // Filtrer les canapés
             filteredResults = tableauObjets.filter(item =>
-                item.type_de_meuble && item.type_de_meuble.toLowerCase().includes('canapé')
+                item.type && item.type.toLowerCase().includes('canapé')
             );
         }
         

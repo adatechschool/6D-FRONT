@@ -6,8 +6,6 @@ import { useParams } from 'react-router-dom';
 
 
 function DetailPage() {
-
-    
     const { id } = useParams();
     const [donnees, setDonnees] = useState([]);
     
@@ -51,11 +49,11 @@ function DetailPage() {
                 <p className="text-lg font-semibold text-emerald-700 mb-2 font-primary">{donnees.price}</p>
                 <hr className="border-emerald-700 mb-4" />
                 <ul className="text-emerald-700 mb-4 space-y-2 font-primary">
-                    <li><strong>Type de meuble: </strong>{donnees.type}</li>
-                    <li><strong>Dimensions: </strong>{donnees.dimensions}</li>
-                    <li><strong>Couleurs: </strong>{donnees.color}</li>
-                    <li><strong>Matières: </strong>{donnees.material}</li>
-                    <li><strong>État: </strong>{donnees.product_condition}</li>
+                    <li><strong>Type de meuble : </strong>{donnees.type}</li>
+                    <li><strong>Dimensions : </strong>{donnees.dimensions}</li>
+                    <li><strong>Couleurs : </strong>{donnees.color}</li>
+                    <li><strong>Matières : </strong>{donnees.material}</li>
+                    <li><strong>État : </strong>{donnees.product_condition}</li>
                     <li>{donnees.description}</li>
                 </ul>
                 <button className="bg-emerald-700 text-white font-primary px-6 py-2 rounded-full hover:scale-90">
