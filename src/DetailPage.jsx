@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import like from './assets/like_2794617.svg';
 import fauteuil from './assets/fauteuil.webp';
+import { useParams } from 'react-router-dom';
+
 
 
 function DetailPage() {
+
+    
+    const { id } = useParams();
+    const [donnees, setDonnees] = useState([]);
+    
+    useEffect(() => {
+        fetch(`http://localhost:8000/products/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            setDonnees(data);
+            console.log('Données chargées:', data);
+        })
+        .catch(error => console.error("C'est nous, Erreur lors du chargement du JSON:", error));
+    }, []);
+
+
     return (
         <div className="flex flex-col md:flex-row items-start md:items-center md:space-x-6 space-y-6 md:space-y-0 mb-8 px-4 md:px-6">
             {/* Photo Card */}
@@ -24,19 +42,21 @@ function DetailPage() {
             {/* Details Card */}
             <div className="bg-white rounded-2xl shadow-md w-full md:w-1/2 p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-2xl font-bold text-emerald-700 font-primary">Nom du meuble</h2>
+                    <h2 className="text-2xl font-bold text-emerald-700 font-primary">{donnees.name}</h2>
+                    
                     <button className="hover:scale-90 transition-all">
                         <img src={like} alt="favoris" className="w-6 hover:scale-90 cursor-pointer" />
                     </button>
                 </div>
-                <p className="text-lg font-semibold text-emerald-700 mb-2 font-primary">Prix: 0 €</p>
+                <p className="text-lg font-semibold text-emerald-700 mb-2 font-primary">{donnees.price}</p>
                 <hr className="border-emerald-700 mb-4" />
                 <ul className="text-emerald-700 mb-4 space-y-2 font-primary">
-                    <li><strong>Type de meuble:</strong> Type</li>
-                    <li><strong>Dimensions:</strong> Dimensions</li>
-                    <li><strong>Couleurs:</strong> Couleurs</li>
-                    <li><strong>Matières:</strong> Matières</li>
-                    <li><strong>État:</strong> État</li>
+                    <li><strong>Type de meuble: </strong>{donnees.type}</li>
+                    <li><strong>Dimensions: </strong>{donnees.dimensions}</li>
+                    <li><strong>Couleurs: </strong>{donnees.color}</li>
+                    <li><strong>Matières: </strong>{donnees.material}</li>
+                    <li><strong>État: </strong>{donnees.product_condition}</li>
+                    <li>{donnees.description}</li>
                 </ul>
                 <button className="bg-emerald-700 text-white font-primary px-6 py-2 rounded-full hover:scale-90">
                     Commander

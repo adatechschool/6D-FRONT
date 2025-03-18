@@ -10,8 +10,14 @@ function App() {
 
   useEffect(() => {
     // Charger les données de l'API locale au montage du composant
-    setSearchResults(tableauObjets);
-  }, []);
+    fetch('http://localhost:8000/ads')
+          .then(response => response.json())
+          .then(data => {
+              setSearchResults(data);
+              console.log('Données chargées:', data);
+          })
+          .catch(error => console.error("C'est nous, Erreur lors du chargement du JSON:", error));
+    }, []);
 
   return (
     <Router>
@@ -19,7 +25,7 @@ function App() {
         <Header setSearchResults={setSearchResults} />
         <Routes>
           <Route path="/" element={<HomePageCard searchResults={searchResults} />} />
-          <Route path="/details" element={<DetailPage />} />
+          <Route path="/details/:id" element={<DetailPage />} />
         </Routes>
       </div>
     </Router>
