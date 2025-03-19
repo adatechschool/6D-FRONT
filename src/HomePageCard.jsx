@@ -26,25 +26,23 @@ function Annonce({ annonce }) {
             .catch(error => console.error("C'est nous, Erreur lors du chargement du JSON:", error));
     }, []);
 
-    const [picture, setPicture] = useState([]);
+    const [picture, setPicture] = useState({});
 
     useEffect(() => {
         fetch(`http://localhost:8000/pictures/first/${productId}`)
         .then(response => response.json())
         .then(data => {
             setPicture(data);
-            console.log('Données chargées:', data);
+            console.log('Picture Données chargées:', data);
         })
         .catch(error => console.error("C'est nous, Erreur lors du chargement du JSON:", error));
-}, []);
+    }, []);
 
     const ID = `/details/${productId}`;
-    console.log("picture",picture)
-    console.log("picurl",picture.url)
     return (
         <div className='grid grid-cols-4 grid-rows-1 gap-4 px-4 py-4'>
-            <Link to={ID} className='bg-white w-70 h-92 rounded-2xl text-emerald-700 font-primary shadow-md'>
-                <img src={picture.url} alt="photo de meuble" className="w-full rounded-t-2xl" />
+            <Link to={ID} className='bg-white w-70 h-107 rounded-2xl text-emerald-700 font-primary shadow-md'>
+                <img src={picture.url} alt={picture.url} className="w-full rounded-t-2xl" />
                 <div className='p-5'>
                     <div className='flex justify-between items-center mb-4'>
                         <p className='font-bold text-xl'>{truncatedTitle}</p>
