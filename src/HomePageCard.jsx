@@ -41,6 +41,7 @@ function Annonce({ annonce }) {
     const ID = `/details/${productId}`;
     return (
         <div className='grid grid-cols-4 grid-rows-1 gap-4 px-4 py-4'>
+            {/* balise link poutr spéficier la partie qui est un lien et renvoie vers une autre page */}
             <Link to={ID} className='bg-white w-70 h-107 rounded-2xl text-emerald-700 font-primary shadow-md'>
                 <img src={picture.url} alt={picture.url} className="w-full rounded-t-2xl" />
                 <div className='p-5'>
