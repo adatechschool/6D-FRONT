@@ -35,7 +35,7 @@ function DetailPage() {
         <div className="flex flex-col md:flex-row items-start md:items-center md:space-x-6 space-y-6 md:space-y-0 mb-8 px-4 md:px-6">
             {/* Photo Card */}
             <div className="bg-white rounded-2xl shadow-md w-full md:w-1/2 p-4">
-                <h3 className="text-xl font-bold text-emerald-700 mb-4 font-primary">
+                <h3 className="text-xl font-bold text-emerald-700 mb-4 font-primary"></h3>
                 <img src={picture.url} alt="photo meuble" className="w-full h-64 object-contain rounded-lg mb-6" />
                 <div className="flex justify-between">
                     {/* Navigation arrows */}
